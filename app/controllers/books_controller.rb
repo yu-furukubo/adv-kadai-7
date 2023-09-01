@@ -11,7 +11,9 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    from = Time.current - 6.day
+    to = Time.current
+    @books = Book.includes(:favorite).order("favorites.id DESC")
     @book = Book.new
   end
 
